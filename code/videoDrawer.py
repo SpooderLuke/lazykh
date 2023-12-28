@@ -16,7 +16,7 @@ W_W = 1920
 W_H = 1080
 W_M = 20
 EMOTION_POSITIVITY = [1,1,0,0,0,1]
-POSE_COUNT = 30
+POSE_COUNT = 10
 SCRIBBLE_W = 880
 SCRIBBLE_H = 1000
 
@@ -28,17 +28,16 @@ def getJiggle(x, fader, multiplier):
         return 1
     return math.exp(-fader*pow(x/multiplier,2))*math.sin(x/multiplier)
 
-def drawFrame(frameNum,paragraph,emotion,imageNum,pose,phoneNum,poseTimeSinceLast,poseTimeTillNext):
-    global MOUTH_COOR
+def drawFrame(frameNum, paragraph, emotion, imageNum, pose, phoneNum, poseTimeSinceLast, poseTimeTillNext):
     global BG_CACHE
-    FLIPPED = (paragraph%2 == 1)
+    FLIPPED = (paragraph % 2 == 1)
 
     if paragraph == CACHES[0][0]:
         frame = CACHES[0][1]
     else:
-        frame = Image.open("backgrounds/bga"+str(paragraph%BACKGROUND_COUNT)+".png")
-        CACHES[0] = [paragraph,frame]
-    frame = Image.eval(frame, lambda x: int(256-(256-x)/2)) # Makes the entire background image move 50% closer to white. In other words, it's paler.
+        frame = Image.open("backgrounds/bga" + str(paragraph % BACKGROUND_COUNT) + ".png")
+        CACHES[0] = [paragraph, frame]
+    frame = Image.eval(frame, lambda x: int(256 - (256 - x) / 2))  # Makes the entire background image move 50% closer to white. In other words, it's paler.
 
     scribble = None
     if USE_BILLBOARDS:
@@ -47,61 +46,37 @@ def drawFrame(frameNum,paragraph,emotion,imageNum,pose,phoneNum,poseTimeSinceLas
             scribble = CACHES[2][1]
         elif os.path.isfile(FILENAME):
             scribble = Image.open(FILENAME)
-            CACHES[2] = [imageNum,scribble]
+            CACHES[2] = [imageNum, scribble]
 
         if scribble is not None:
             s_W, s_H = scribble.size
-            W_scale = SCRIBBLE_W/s_W
-            H_scale = SCRIBBLE_H/s_H
-            O_scale = min(W_scale,H_scale)
-            scribble = scribble.resize((int(round(O_scale*s_W)),int(round(O_scale*s_H))), Image.Resampling.LANCZOS)
+            W_scale = SCRIBBLE_W / s_W
+            H_scale = SCRIBBLE_H / s_H
+            O_scale = min(W_scale, H_scale)
+            scribble = scribble.resize((int(round(O_scale * s_W)), int(round(O_scale * s_H))), Image.Resampling.LANCZOS)
 
             s_W, s_H = scribble.size
 
     s_X = 0
     if FLIPPED:
-        s_X += int(W_W/2)
+        s_X += int(W_W / 2)
 
     if USE_BILLBOARDS and scribble is not None:
         img1 = ImageDraw.Draw(frame)
-        img1.rectangle([(s_X+W_M-4,W_M-4),(s_X+W_W/2-W_M+8,W_H-W_M+8)], fill ="#603810")
-        img_centerX = s_X+W_M*2+SCRIBBLE_W*0.5
-        img_centerY = W_M*2+SCRIBBLE_H*0.5
-        img_pasteX = int(round(img_centerX-s_W/2))
-        img_pasteY = int(round(img_centerY-s_H/2))
-        frame.paste(scribble,(img_pasteX,img_pasteY))
+        img1.rectangle([(s_X + W_M - 4, W_M - 4), (s_X + W_W / 2 - W_M + 8, W_H - W_M + 8)], fill="#603810")
+        img_centerX = s_X + W_M * 2 + SCRIBBLE_W * 0.5
+        img_centerY = W_M * 2 + SCRIBBLE_H * 0.5
+        img_pasteX = int(round(img_centerX - s_W / 2))
+        img_pasteY = int(round(img_centerY - s_H / 2))
+        frame.paste(scribble, (img_pasteX, img_pasteY))
 
     jiggleFactor = 1
     if ENABLE_JIGGLING:
         preJF = getJiggle(poseTimeSinceLast,0.06,0.6)-getJiggle(poseTimeTillNext,0.06,0.6)
         jiggleFactor = pow(1.07,preJF)
 
-    blinker = 0
-    blinkFactor = poseTimeSinceLast%60
-    if blinkFactor == 57 or blinkFactor == 58:
-        blinker = 2
-    elif blinkFactor >= 56:
-        blinker = 1
-
-    poseIndex = emotion*5+pose
-    poseIndexBlinker = poseIndex*3+blinker
-    body = Image.open("poses/pose"+"{:04d}".format(poseIndexBlinker+1)+".png")
-
-    mouthImageNum = phoneNum+1
-    if EMOTION_POSITIVITY[emotion] == 0:
-        mouthImageNum += 11
-    mouth = Image.open("mouths/mouth"+"{:04d}".format(mouthImageNum)+".png")
-
-    if MOUTH_COOR[poseIndex,2] < 0:
-        mouth = mouth.transpose(Image.Transpose.FLIP_LEFT_RIGHT)
-    if MOUTH_COOR[poseIndex,3] != 1:
-        m_W, m_H = mouth.size
-        mouth = mouth.resize((int(abs(m_W*MOUTH_COOR[poseIndex,2])), int(m_H*MOUTH_COOR[poseIndex,3])), Image.Resampling.LANCZOS)
-    if MOUTH_COOR[poseIndex,4] != 0:
-        mouth = mouth.rotate(-MOUTH_COOR[poseIndex,4],resample=Image.Resampling.BICUBIC)
-
-    m_W, m_H = mouth.size
-    body.paste(mouth,(int(MOUTH_COOR[poseIndex,0]-m_W/2),int(MOUTH_COOR[poseIndex,1]-m_H/2)),mouth)
+    poseIndex = emotion
+    body = Image.open("poses/pose"+"{:04d}".format(poseIndex)+".png")
 
     ow, oh = body.size
     nh = oh*jiggleFactor
@@ -119,9 +94,11 @@ def drawFrame(frameNum,paragraph,emotion,imageNum,pose,phoneNum,poseTimeSinceLas
     if FLIPPED:
         body = body.transpose(Image.Transpose.FLIP_LEFT_RIGHT)
     frame.paste(body,(inx-s_X,iny),body)
-    if not os.path.isdir(INPUT_FILE+"_frames"):
-        os.makedirs(INPUT_FILE+"_frames")
-    frame.save(INPUT_FILE+"_frames/f"+"{:06d}".format(frameNum)+".png")
+    # Save the frame as before if required
+    if not os.path.isdir(INPUT_FILE + "_frames"):
+        os.makedirs(INPUT_FILE + "_frames")
+    frame.save(INPUT_FILE + "_frames/f" + "{:06d}".format(frameNum) + ".png")
+
 
 def duplicateFrame(prevFrame, thisFrame):
     prevFrameFile = INPUT_FILE+"_frames/f"+"{:06d}".format(prevFrame)+".png"
@@ -257,15 +234,7 @@ f.close()
 #    origStr.remove("")
 
 
-f = open("code/mouthCoordinates.csv","r+")
-mouthCoordinatesStr = f.read().split("\n")
-f.close()
-MOUTH_COOR = np.zeros((POSE_COUNT,5))
-for i in range(len(mouthCoordinatesStr)):
-    parts = mouthCoordinatesStr[i].split(",")
-    for j in range(5):
-        MOUTH_COOR[i,j] = float(parts[j])
-MOUTH_COOR[:,0:2] *= 3 #upscale for 1080p, not 360p
+
 
 lastFrameInfo = None
 CACHES = [[None,None]]*PARTS_COUNT

@@ -2,6 +2,7 @@ import argparse
 import os.path
 import os
 import subprocess
+import shutil
 
 def emptyFolder(folder):
     for filename in os.listdir(folder):
