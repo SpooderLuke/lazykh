@@ -1,12 +1,12 @@
-<idle>This is a save button. <explain>Most games have them and nine tea nine percent have some sort of saving.
-<confused>They must be easy right? <annoyed>Wrong. <angry> These things are painful to code. <idle> But today i'm going to <explain>shine a light on the insane programming <idle>behind save systems.
+<idle>This is a [save button]. <explain>Most games have them and [nine tea nine percent have some sort of saving].
+<confused>They must be [easy right]? <annoyed>[Wrong]. <angry> These things are [painful] to code. <idle> But today i'm going to <explain>[shine a light] on the insane programming <idle>behind save systems.
 
-<idle>So, <explain>the main problem with save systems is knowing what to save. <idle>I think the best way to show this is with an example.
-<explain>Alright so lets say we want to save this bouncing ball in its exact state. <idle>Well we'll need to save its <explain>position,<idle> its <explain>current velocity <idle>and its <explain>rotation.<idle> So the position we can use a vector. <confused>We'll probably need another vector for the velocity and one for the rotation too.
+<idle>So, <explain>the [main problem with save systems] is knowing what to save. <idle>I think the best way to show this is with an example.
+<explain>Alright so lets say we want to save this [bouncing ball] in its exact state. <idle>Well we'll need to [save its <explain>position,<idle> its <explain>current velocity <idle>and its <explain>rotation].<idle> So the position we can [use a vector]. <confused>We'll probably need another vector for the velocity and one for the rotation too.
 
-<happy>Now that was actually simple enough! <idle>We can write those three values to a text file and read it when we need to.
-<sad>The problem arises when we try something a bit more complex, <explain>lets say a mine craft chunk. <annoyed>I dont actually know how they are saved but i do know they get big, like <idle>really big. <explain>Did you know that the world file for the mine craft server to be to tea is 5 there a bites large. <idle>Guess what. <explain>Thats wrong its actually 20 there a bites.
+<happy>Now that was actually [simple] enough! <idle>We can write those three values to a [text file] and read it when we need to.
+<sad>The problem arises when we try something a bit more [complex], <explain>lets say a [mine craft chunk]. <annoyed>I dont actually know how they are saved but i do know they get big, like <idle>[really big]. <explain>Did you know that the world file for the mine craft server to be to tea is [5 there a bites large]. <idle>Guess what. <explain>Thats wrong its actually [20 there a bites].
 
-<explain>The problem is there is just so much to save in games like this and game developers have to get really creative things work.
+<explain>The [problem] is there is just so much to save in games like this and game developers have to get really creative things work.
 
-<happy>So lets code a save system!
+<happy>So lets code a [save system]!
