@@ -1,0 +1,1 @@
+python3 code/gentleScriptWriter.py --input_file exampleVideo/ev

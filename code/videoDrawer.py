@@ -21,7 +21,7 @@ SCRIBBLE_W = 880
 SCRIBBLE_H = 1000
 
 MAX_JIGGLE_TIME = 7
-BACKGROUND_COUNT = 5
+BACKGROUND_COUNT = 3
 
 def getJiggle(x, fader, multiplier):
     if x >= MAX_JIGGLE_TIME:
@@ -37,7 +37,7 @@ def drawFrame(frameNum, paragraph, emotion, imageNum, pose, phoneNum, poseTimeSi
     else:
         frame = Image.open("backgrounds/bga" + str(paragraph % BACKGROUND_COUNT) + ".png")
         CACHES[0] = [paragraph, frame]
-    frame = Image.eval(frame, lambda x: int(256 - (256 - x) / 2))  # Makes the entire background image move 50% closer to white. In other words, it's paler.
+    #frame = Image.eval(frame, lambda x: int(256 - (256 - x) / 2))  # Makes the entire background image move 50% closer to white. In other words, it's paler.
 
     scribble = None
     if USE_BILLBOARDS:

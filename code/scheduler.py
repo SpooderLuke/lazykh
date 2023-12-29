@@ -35,7 +35,9 @@ emotions["happy"] = 1
 emotions["sad"] = 2
 emotions["angry"] = 3
 emotions["confused"] = 4
-emotions["rq"] = 5
+emotions["annoyed"] = 5
+emotions["idle"] = 7
+emotions["smug"] = 8
 
 mouthList = [["aa","a"],["ae","a"],["ah","a"],["ao","a"],["aw","au"],
 ["ay","ay"],["b","m"],["ch","t"],["d","t"],["dh","t"],
