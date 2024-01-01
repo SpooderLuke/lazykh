@@ -1,12 +1,22 @@
-<idle>This is a [save button]. <explain>Most games have them and [nine tea nine percent have some sort of saving].
-<confused>They must be [easy right]? <annoyed>[Wrong]. <angry> These things are [painful] to code. <idle> But today i'm going to <explain>[shine a light] on the insane programming <idle>behind save systems.
+<idle>[professional black camera on a marble floor] Video editing is <annoyed>really hard. <explain>It takes hours to make like <angry>ten seconds of footage.
+<idle>[yellow light bulb against a white background] But suddenly I got an idea off of.
+<explain>[youtube video] this you tube video. <smug>What if i made a program that does it for me.
 
-<idle>So, <explain>the [main problem with save systems] is knowing what to save. <idle>I think the best way to show this is with an example.
-<explain>Alright so lets say we want to save this [bouncing ball] in its exact state. <idle>Well we'll need to [save its <explain>position,<idle> its <explain>current velocity <idle>and its <explain>rotation].<idle> So the position we can [use a vector]. <confused>We'll probably need another vector for the velocity and one for the rotation too.
+<idle>[Sketch book with a drawing of a memory stick on it]So the video i watched had a download link, so i decided to start by downloading that and working from there.
+(mandatory self promo)
 
-<happy>Now that was actually [simple] enough! <idle>We can write those three values to a [text file] and read it when we need to.
-<sad>The problem arises when we try something a bit more [complex], <explain>lets say a [mine craft chunk]. <annoyed>I dont actually know how they are saved but i do know they get big, like <idle>[really big]. <explain>Did you know that the world file for the mine craft server to be to tea is [5 there a bites large]. <idle>Guess what. <explain>Thats wrong its actually [20 there a bites].
+<explain>[computer screen with code on it]So there were three problems i had to tackle, actually <idle>running the code, <explain>making it <idle>work with my sprites <explain>and automating the programs <annoyed>no offense <idle>terrible image drawing system.
+<idle>[very confused robot high definition]So for the first problem running the code the code i downloaded <explain>lazy k h needs a library called gentle which <annoyed>only runs on lint hooks.
+<idle>[server room with large black servers with blinking blue lights]My only option was to download and figure out how to use docker which after a <sad>20 minute lecture on containers from my dad <explain>i finally got working.
 
-<explain>The [problem] is there is just so much to save in games like this and game developers have to get really creative things work.
+<idle>[jigsaw puzzle on a wooden floor drawing]So for problem number to making it work with my sprites this program has like <explain>blinking<idle>, <explain>lip sink<idle>, <explain>five poses for each emotion<idle>. <confused>We dont need any of that.
+<annoyed>[very confused robot high definition]Problem is i dont understand his code so <confused>im just gun a
 
-<happy>So lets code a [save system]!
+<idle>[Notice board with sticky notes on it on a class room]And finally problem three is <explain>fixing the image drawing system as.
+Currently <annoyed>it makes you draw the images, within a thirty second time limit
+<confused>[Very smart robot drawing]The solution? <idle>hay i. <smug>Yep thats right i added text to image hay i into my code and made it generate the images!
+
+<smug>[laptop with a movie playing on it]And now its time for the finished product. <idle>Oh wait <smug>you are watching it right now. This entire video was made with a text file and an audio file.
+
+<smug>[computer blue screen]Nothing else
+(like and subscribe)

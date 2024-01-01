@@ -2,7 +2,7 @@
 import re
 
 def removeTags(script):
-  TO_REMOVE = ["[","]","/"]
+  TO_REMOVE = ["/","(",")"]
 
   newScript = script.replace("-"," ")
   for charToRemove in TO_REMOVE:
@@ -11,6 +11,10 @@ def removeTags(script):
   while "<" in newScript:
       start = newScript.index("<")
       end = newScript.index(">")+1
+      newScript = newScript[:start]+newScript[end:]
+  while "[" in newScript:
+      start = newScript.index("[")
+      end = newScript.index("]")+1
       newScript = newScript[:start]+newScript[end:]
   while "  " in newScript:
       newScript = newScript.replace("  "," ")
@@ -28,12 +32,21 @@ def getFilenameOfLine(line):
     return re.sub(r'[^A-Za-z0-9 -]+', '',  topic.lower())
 
 def getTopic(stri):
-    if "[" in stri:
-        start = stri.index("[")+1
-        end = stri.index("]")
-        return stri[start:end]
+    if "(" not in stri:
+        if "[" in stri:
+            start = stri.index("[")+1
+            end = stri.index("]")
+            return stri[start:end]
+        else:
+            return removeTags(stri)
     else:
-        return removeTags(stri)
+        return None
+    
+def getTitle(stri):
+    if "(" in stri:
+        start = stri.index("(")+1
+        end = stri.index(")")
+        return stri[start:end]
 
 def capitalize(stri):
     words = stri.split(" ")

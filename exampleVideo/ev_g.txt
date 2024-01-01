@@ -1,12 +1,22 @@
-This is a save button. Most games have them and nine tea nine percent have some sort of saving.
-They must be easy right? Wrong. These things are painful to code. But today i'm going to shine a light on the insane programming behind save systems.
+Video editing is really hard. It takes hours to make like ten seconds of footage.
+But suddenly I got an idea off of.
+this you tube video. What if i made a program that does it for me.
 
-So, the main problem with save systems is knowing what to save. I think the best way to show this is with an example.
-Alright so lets say we want to save this bouncing ball in its exact state. Well we'll need to save its position, its current velocity and its rotation. So the position we can use a vector. We'll probably need another vector for the velocity and one for the rotation too.
+So the video i watched had a download link, so i decided to start by downloading that and working from there.
+mandatory self promo
 
-Now that was actually simple enough! We can write those three values to a text file and read it when we need to.
-The problem arises when we try something a bit more complex, lets say a mine craft chunk. I dont actually know how they are saved but i do know they get big, like really big. Did you know that the world file for the mine craft server to be to tea is 5 there a bites large. Guess what. Thats wrong its actually 20 there a bites.
+So there were three problems i had to tackle, actually running the code, making it work with my sprites and automating the programs no offense terrible image drawing system.
+So for the first problem running the code the code i downloaded lazy k h needs a library called gentle which only runs on lint hooks.
+My only option was to download and figure out how to use docker which after a 20 minute lecture on containers from my dad i finally got working.
 
-The problem is there is just so much to save in games like this and game developers have to get really creative to make things work.
+So for problem number to making it work with my sprites this program has like blinking, lip sink, five poses for each emotion. We dont need any of that.
+Problem is i dont understand his code so im just gun a
 
-So lets code a save system!
+And finally problem three is fixing the image drawing system as.
+Currently it makes you draw the images, within a thirty second time limit
+The solution? hay i. Yep thats right i added text to image hay i into my code and made it generate the images!
+
+And now its time for the finished product. Oh wait you are watching it right now. This entire video was made with a text file and an audio file.
+
+Nothing else
+like and subscribe

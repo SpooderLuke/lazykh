@@ -3,9 +3,9 @@ import os.path
 import json
 import numpy as np
 import random
-from PIL import Image, ImageDraw
+from PIL import Image, ImageDraw, ImageFont
 import math
-from utils import getFilenameOfLine
+from utils import getFilenameOfLine, getTitle
 import shutil
 
 FRAME_START_RENDER_AT  = 0
@@ -16,7 +16,7 @@ W_W = 1920
 W_H = 1080
 W_M = 20
 EMOTION_POSITIVITY = [1,1,0,0,0,1]
-POSE_COUNT = 10
+POSE_COUNT = 24
 SCRIBBLE_W = 880
 SCRIBBLE_H = 1000
 
@@ -28,77 +28,84 @@ def getJiggle(x, fader, multiplier):
         return 1
     return math.exp(-fader*pow(x/multiplier,2))*math.sin(x/multiplier)
 
-def drawFrame(frameNum, paragraph, emotion, imageNum, pose, phoneNum, poseTimeSinceLast, poseTimeTillNext):
+def drawFrame(frameNum,paragraph,emotion,imageNum,pose,phoneNum,poseTimeSinceLast,poseTimeTillNext):
     global BG_CACHE
-    FLIPPED = (paragraph % 2 == 1)
+    FLIPPED = (paragraph%2 == 1)
 
-    if paragraph == CACHES[0][0]:
-        frame = CACHES[0][1]
+    if getTitle(origScript[imageNum]) != None:
+        frame = Image.new('RGBA', (1920, 1080))  # Replace width and height with your frame dimensions
+        mf = ImageFont.truetype('font.otf', 128)
+        fd = ImageDraw.Draw(frame)
+        fd.text((480, 540), getTitle(origScript[imageNum]),fill=(255, 255, 255),font=mf)
     else:
-        frame = Image.open("backgrounds/bga" + str(paragraph % BACKGROUND_COUNT) + ".png")
-        CACHES[0] = [paragraph, frame]
-    #frame = Image.eval(frame, lambda x: int(256 - (256 - x) / 2))  # Makes the entire background image move 50% closer to white. In other words, it's paler.
 
-    scribble = None
-    if USE_BILLBOARDS:
-        FILENAME = f"{INPUT_FILE}_billboards/{getFilenameOfLine(origScript[imageNum])}.png"
-        if imageNum == CACHES[2][0]:
-            scribble = CACHES[2][1]
-        elif os.path.isfile(FILENAME):
-            scribble = Image.open(FILENAME)
-            CACHES[2] = [imageNum, scribble]
+        # if paragraph == CACHES[0][0]:
+        #     frame = CACHES[0][1]
+        # else:
+        frame = bgs[paragraph%BACKGROUND_COUNT].copy()
+            # CACHES[0] = [paragraph,frame]
 
-        if scribble is not None:
-            s_W, s_H = scribble.size
-            W_scale = SCRIBBLE_W / s_W
-            H_scale = SCRIBBLE_H / s_H
-            O_scale = min(W_scale, H_scale)
-            scribble = scribble.resize((int(round(O_scale * s_W)), int(round(O_scale * s_H))), Image.Resampling.LANCZOS)
+        scribble = None
+        if USE_BILLBOARDS:
+            FILENAME = f"{INPUT_FILE}_billboards/{getFilenameOfLine(origScript[imageNum])}.png"
+            if imageNum == CACHES[2][0]:
+                scribble = CACHES[2][1]
+            elif os.path.isfile(FILENAME):
+                scribble = Image.open(FILENAME)
+                CACHES[2] = [imageNum,scribble]
 
-            s_W, s_H = scribble.size
+            if scribble is not None:
+                s_W, s_H = scribble.size
+                W_scale = SCRIBBLE_W/s_W
+                H_scale = SCRIBBLE_H/s_H
+                O_scale = min(W_scale,H_scale)
+                scribble = scribble.resize((int(round(O_scale*s_W)),int(round(O_scale*s_H))), Image.Resampling.LANCZOS)
 
-    s_X = 0
-    if FLIPPED:
-        s_X += int(W_W / 2)
+                s_W, s_H = scribble.size
 
-    if USE_BILLBOARDS and scribble is not None:
-        img1 = ImageDraw.Draw(frame)
-        img1.rectangle([(s_X + W_M - 4, W_M - 4), (s_X + W_W / 2 - W_M + 8, W_H - W_M + 8)], fill="#603810")
-        img_centerX = s_X + W_M * 2 + SCRIBBLE_W * 0.5
-        img_centerY = W_M * 2 + SCRIBBLE_H * 0.5
-        img_pasteX = int(round(img_centerX - s_W / 2))
-        img_pasteY = int(round(img_centerY - s_H / 2))
-        frame.paste(scribble, (img_pasteX, img_pasteY))
+        s_X = 0
+        if FLIPPED:
+            s_X += int(W_W/2)
 
-    jiggleFactor = 1
-    if ENABLE_JIGGLING:
-        preJF = getJiggle(poseTimeSinceLast,0.06,0.6)-getJiggle(poseTimeTillNext,0.06,0.6)
-        jiggleFactor = pow(1.07,preJF)
+        if USE_BILLBOARDS and scribble is not None:
+            img1 = ImageDraw.Draw(frame)
+            img1.rectangle([(s_X+W_M-4,W_M-4),(s_X+W_W/2-W_M+8,W_H-W_M+8)], fill ="#603810")
+            img_centerX = s_X+W_M*2+SCRIBBLE_W*0.5
+            img_centerY = W_M*2+SCRIBBLE_H*0.5
+            img_pasteX = int(round(img_centerX-s_W/2))
+            img_pasteY = int(round(img_centerY-s_H/2))
+            frame.paste(scribble,(img_pasteX,img_pasteY))
 
-    poseIndex = emotion
-    body = Image.open("poses/pose"+"{:04d}".format(poseIndex)+".png")
+        jiggleFactor = 1
+        if ENABLE_JIGGLING:
+            preJF = getJiggle(poseTimeSinceLast,0.06,0.6)-getJiggle(poseTimeTillNext,0.06,0.6)
+            jiggleFactor = pow(1.07,preJF)
 
-    ow, oh = body.size
-    nh = oh*jiggleFactor
-    nw = ow/jiggleFactor
-    inh = int(round(nh))
-    inw = int(round(nw))
-    inx = int(round(W_W*0.75-nw/2))
-    if inx < 300:
-        inx -= 50
-    else:
-        inx += 50
-    iny = int(round(W_H-nh))
-    body = body.resize((inw,inh), Image.Resampling.LANCZOS)
+        body = Image.open("poses/pose"+"{:04d}".format(emotion)+"-"+str(pose + 1)+".png")
 
-    if FLIPPED:
-        body = body.transpose(Image.Transpose.FLIP_LEFT_RIGHT)
-    frame.paste(body,(inx-s_X,iny),body)
-    # Save the frame as before if required
-    if not os.path.isdir(INPUT_FILE + "_frames"):
-        os.makedirs(INPUT_FILE + "_frames")
-    frame.save(INPUT_FILE + "_frames/f" + "{:06d}".format(frameNum) + ".png")
+        mouthImageNum = phoneNum+1
+        
+    # body.paste(mouth,(int(MOUTH_COOR[poseIndex,0] -m_W/2),int(MOUTH_COOR[poseIndex,1]-m_H/2)),mouth)
 
+        ow, oh = body.size
+        nh = oh*jiggleFactor
+        nw = ow/jiggleFactor
+        inh = int(round(nh))
+        inw = int(round(nw))
+        inx = int(round(W_W*0.75-nw/2))
+        if inx < 300:
+            inx -= 50
+        else:
+            inx += 50
+        iny = int(round(W_H-nh))
+        body = body.resize((inw,inh), Image.Resampling.LANCZOS)
+
+        if FLIPPED:
+            body = body.transpose(Image.Transpose.FLIP_LEFT_RIGHT)
+        frame.paste(body,(inx-s_X,iny),body)
+    if not os.path.isdir(INPUT_FILE+"_frames"):
+        os.makedirs(INPUT_FILE+"_frames")
+    frame.save(INPUT_FILE+"_frames/f"+"{:06d}".format(frameNum)+".png")
 
 def duplicateFrame(prevFrame, thisFrame):
     prevFrameFile = INPUT_FILE+"_frames/f"+"{:06d}".format(prevFrame)+".png"
@@ -205,7 +212,7 @@ f.close()
 schedules = [None]*PARTS_COUNT
 for i in range(PARTS_COUNT):
     schedules[i] = scheduleLines[i].split("\n")
-    if i == 4:
+    if i == 5:
         schedules[i] = schedules[i][0:-1]
 lastParts = schedules[-1][-2].split(",")
 lastTimestamp = float(lastParts[0])
@@ -235,11 +242,16 @@ f.close()
 
 
 
-
 lastFrameInfo = None
 CACHES = [[None,None]]*PARTS_COUNT
 FRAME_CACHES = {}
 indicesOn = [-1]*(PARTS_COUNT-1)
+
+bg1 = Image.open("backgrounds/bga0.png")
+bg2 = Image.open("backgrounds/bga1.png")
+bg3 = Image.open("backgrounds/bga2.png")
+bgs = [bg1,bg2,bg3]
+
 for frame in range(0,FRAME_COUNT):
     for p in range(PARTS_COUNT-1):
         frameOfNext = frameOf(p,1)
@@ -249,6 +261,7 @@ for frame in range(0,FRAME_COUNT):
     emotion = stateOf(1)
     imageNum = stateOf(2)
     pose = stateOf(3)
+
     timeSincePrevPoseChange = frame-frameOf(3,0)
     timeUntilNextPoseChange = frameOf(3,1)-frame
 
@@ -265,5 +278,5 @@ for frame in range(0,FRAME_COUNT):
             duplicateFrame(FRAME_CACHES[thisFrameInfo], frame)
         else:
             drawFrame(frame,paragraph,emotion,imageNum,pose,phonemesPerFrame[frame],timeSincePrevPoseChange,timeUntilNextPoseChange)
-        if frame%PRINT_EVERY == 0 or frame == FRAME_COUNT-1:
-            print(f"Just drew frame {frame+1} / {FRAME_COUNT}")
+            if frame%PRINT_EVERY == 0 or frame == FRAME_COUNT-1:
+                print(f"Just drew frame {frame+1} / {FRAME_COUNT}")

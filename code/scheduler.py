@@ -25,9 +25,9 @@ def pickNewPose(t):
     strings[3] += (str.format('{0:.3f}', t)+",pose,"+str(pose)+"\n")
     prevPhoneme = "na"
 
-strings = [""]*5
+strings = [""]*6
 
-POSE_COUNT = 5
+POSE_COUNT = 3
 
 emotions = {}
 emotions["explain"] = 0
@@ -76,6 +76,7 @@ pose = -1
 prevPose = -1
 prevPhoneme = "na"
 emotion = "0"
+title ="na"
 pararaph = 0
 image = 0
 
@@ -85,6 +86,7 @@ strings[1] += "0,emotion,0\n"
 strings[0] += "0,paragraph,0\n"
 strings[2] += "0,image,0\n"
 strings[4] += "0,phoneme,m\n"
+strings[5] += "0,title,m\n"
 for i in range(WORD_COUNT):
     word = data['words'][i]
     if "start" not in word:
