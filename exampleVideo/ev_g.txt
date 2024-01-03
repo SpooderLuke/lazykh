@@ -1,22 +1,34 @@
-Video editing is really hard. It takes hours to make like ten seconds of footage.
-But suddenly I got an idea off of.
-this you tube video. What if i made a program that does it for me.
+Greetings, brave developers and aspiring game gods! Today on "Code Surgery,"
+we're diving into the treacherous realm of refactoring the game's main menu and
+navigating the murky waters of Steam multiplayer libraries.
 
-So the video i watched had a download link, so i decided to start by downloading that and working from there.
-mandatory self promo
+Feast your eyes on the tangled mess that is our game's main menu!
+It's like someone dropped a jigsaw puzzle and then tried to solve it blindfolded.
+Let's untangle this web of confusion and turn it into a user friendly paradise!
 
-So there were three problems i had to tackle, actually running the code, making it work with my sprites and automating the programs no offense terrible image drawing system.
-So for the first problem running the code the code i downloaded lazy k h needs a library called gentle which only runs on lint hooks.
-My only option was to download and figure out how to use docker which after a 20 minute lecture on containers from my dad i finally got working.
+Behold the mystical incantations of the Steam multiplayer libraries!
+It's as if we're deciphering an ancient language that only the coding wizards of Valve can fully comprehend.
+Fear not, for we shall tame this beast and summon the power of online multiplayer!
 
-So for problem number to making it work with my sprites this program has like blinking, lip sink, five poses for each emotion. We dont need any of that.
-Problem is i dont understand his code so im just gun a
+Oh look, error messages!
+They're like little presents from the coding universe,
+wrapped in frustration and tied with a bow of confusion.
+But fear not, dear viewers, for errors are simply opportunities for creative problem solving or so we tell ourselves!
 
-And finally problem three is fixing the image drawing system as.
-Currently it makes you draw the images, within a thirty second time limit
-The solution? hay i. Yep thats right i added text to image hay i into my code and made it generate the images!
+Victory! With the precision of a surgeon wielding a scalpel,
+we've refactored the main menu into a sleek, intuitive interface, and conquered the Steam multiplayer libraries!
+Our game is now primed and ready to embrace the chaotic battlefield of online play!
 
-And now its time for the finished product. Oh wait you are watching it right now. This entire video was made with a text file and an audio file.
+Witness the magic as our once dormant "Join Game" button springs to life, eagerly awaiting players like
+a host at a dinner party. Join us, fellow gamers, in this
+digital playground where friendships are forged and rivalries blossom!
 
-Nothing else
-like and subscribe
+Alas, our adventure in code land must come to an end.
+Remember, my fellow code wizards, refactoring is like
+cleaning your room: it may seem tedious, but the satisfaction of a tidy codebase is worth its weight in
+bug free gameplay!
+
+Until next time, keep refactoring with gusto, and may your games be
+bug free and your multiplayer experiences legendary! This has been
+"Code Surgery," where we turn code chaos into a symphony of digital perfection!
+Happy coding, and may your functions be as efficient as a well oiled machine!
