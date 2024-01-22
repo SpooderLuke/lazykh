@@ -1,34 +1,96 @@
-Greetings, brave developers and aspiring game gods! Today on "Code Surgery,"
-we're diving into the treacherous realm of refactoring the game's main menu and
-navigating the murky waters of Steam multiplayer libraries.
+one thousand subscribers.
+wow. weve come so far from this.
+I think to celebrate this milestone im gonna take a trip back all the way to where it all started.
+Umm mabye not that far. Perfect.
+8 Year old me yes you might actually figure out my age in this video played a lot of games. TOO many games and i especially liked
+multiplayer games trust me this is important later.
 
-Feast your eyes on the tangled mess that is our game's main menu!
-It's like someone dropped a jigsaw puzzle and then tried to solve it blindfolded.
-Let's untangle this web of confusion and turn it into a user friendly paradise!
+So at this point i started coding with scratch.
+I uh dont have any memories of it i mean i was 8 give me a break. All i know is that this sparked an interest in gamedev
+that would never die.
 
-Behold the mystical incantations of the Steam multiplayer libraries!
-It's as if we're deciphering an ancient language that only the coding wizards of Valve can fully comprehend.
-Fear not, for we shall tame this beast and summon the power of online multiplayer!
+After a few months of using scratch i was ready for the next level.
+Game maker.
+i had just gone on holidays so i decided to make my game about that. Spoiler alert. I never made it past
+packing my bag.
 
-Oh look, error messages!
-They're like little presents from the coding universe,
-wrapped in frustration and tied with a bow of confusion.
-But fear not, dear viewers, for errors are simply opportunities for creative problem solving or so we tell ourselves!
+Next up was the try random stuff era. I had joined something called coder dojo which is basically just a monthly club teaching kids how to code.
+I learned a bit of java and this thing called
+robocode where you like code AI for these tanks. Its pretty cool.
 
-Victory! With the precision of a surgeon wielding a scalpel,
-we've refactored the main menu into a sleek, intuitive interface, and conquered the Steam multiplayer libraries!
-Our game is now primed and ready to embrace the chaotic battlefield of online play!
+One day i overheard my dad teaching a class about object oriented programming. As an example he used none other than...
+UNITY
 
-Witness the magic as our once dormant "Join Game" button springs to life, eagerly awaiting players like
-a host at a dinner party. Join us, fellow gamers, in this
-digital playground where friendships are forged and rivalries blossom!
+Oh wait no were not there yet we're still in 2020.
+This is my first unity game
+boat balance. I gotta give myself credit. This game is suprisingly fun. Its entirely based on the
+RigidBody dot AddForce fuction so lets try it out!
 
-Alas, our adventure in code land must come to an end.
-Remember, my fellow code wizards, refactoring is like
-cleaning your room: it may seem tedious, but the satisfaction of a tidy codebase is worth its weight in
-bug free gameplay!
+Next up just a day after Boat Balance we have
+Arena and umm. This game is real bad. I dont know what happened but boat balance is just better than this.
+I guess it was probably because i was experimenting a lot. Like this
+minecraft wither is me learning
+blender and these monsters are me finding the
+asset store.
 
-Until next time, keep refactoring with gusto, and may your games be
-bug free and your multiplayer experiences legendary! This has been
-"Code Surgery," where we turn code chaos into a symphony of digital perfection!
-Happy coding, and may your functions be as efficient as a well oiled machine!
+Now we have slime chopper which is intended for mobile,
+hence the name slime chopper mobile. It's okay i guess.
+You can see me learing unitys particle system here and a bit of UI design.
+Its pretty bad UI design but its there.
+
+This is black out and its an odd one. The goal is to kill all the monsters before you
+faint from a head injury. You can see me trying out
+nav mesh and a bit more
+blender.
+
+At this point i started spooderCode. My first videos were... Interesting.
+I actually did tutorials here instead of this kind of video.
+My most popular video is actually a tutorial.
+How to export as an exe file unity.
+
+Next up we have Blaster Boost.
+I gotta admit i have a soft spot for this game.
+Just looking back at this now i am getting some serious nostalgia. This was my first long term project lasting about a year, though most of that time was spent not working on the game.
+This is the point of my gamedev career where i actually had to deal with the one problem that kills all indie devs.
+MOTIVATION.
+This game took a really long time and i learned SO many things from making it.
+Save Files.
+Procedural generation.
+Boss fights.
+Loads of stuff like that.
+
+Around this time i started doing game jams. Every year me and my dad would do the gmtk game jam.
+2020 Berserker
+2021 Sheep crossing
+2022 Sixes
+2023 Bumbling dad
+These game jams were great as we had to learn about scoping and doing things quickly.
+
+I started off 2022 with Slime Run.
+An endless runner that i would release on the app store and google play. This is the first game that i actually pulled together into a finished game.
+I had adverts running in the game in the attempt to make some money but i made like
+1 euro. The main problem with this game was putting it on mobile. I swear to god,
+WHY DOES APPLE HAVE SO MANY REQUIREMENTS. Android just want their 25 euro and you can do all you want but apple?
+nooooo.
+
+Ahh Stupidiverse. This game started off with me being bored while waiting for my dad to start working on a project we were planning.
+This game had an interesting development plan, that being it didnt even have one. I just added whatever sounded coolest to me.
+This game was multiplayer because my cousin wanted to play something with me but they didnt have any multiplayer games on their pc.
+The entire time i was working on this game my dad was annoying me to work on his game.
+
+Next is Grapploteer. This game was
+HELL to finish. It was a puzzle game with teleporting as the main mechanic. Little did i know that i picked to of the hardest things to make.
+Puzzle games are ridiculously hard to make. I spent so long just drawing puzzles on pieces of paper.
+I even have them stuck on my wall to remind me of the game.
+Teleporting though was an entirely different problem. The amount of times the character either entered the floor or teleported a few blocks away from where i aimed was ridiculous.
+I rewrote just the movement code 3 times. The scope of this game had to be cut down many times. It was originally supposed to have 40 puzzles. It ended up having 28. This game was the first game i released on steam but after putting slime run on the app store it was nothing.
+It was also the first time i had to do any REAL bugfixing. I had to have people playtest the game and me just sitting there writing down problems.
+I remember having a trello board filled with bugs i needed to fix. It was a nightmare.
+
+Now we are at present day.
+Brawlberry. This is the first game that me and my dad are actually working together on.
+Its a coop roguelike
+told you it would be important.
+We are planning on releasing it on steam so please go whislist it there. This game is going to hopefully be the highest quality game ive ever made and we have big plans for it.
+
+So yeah! Thats it! That is my entire gamedev career! I hope you guys found it interesting and ill see you in the next one...

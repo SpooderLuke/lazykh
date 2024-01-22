@@ -44,14 +44,20 @@ def drawFrame(frameNum,paragraph,emotion,imageNum,pose,phoneNum,poseTimeSinceLas
         # else:
         frame = bgs[paragraph%BACKGROUND_COUNT].copy()
             # CACHES[0] = [paragraph,frame]
-
+        use_as_background = (imageNum%5 == 0) 
         scribble = None
         if USE_BILLBOARDS:
             FILENAME = f"{INPUT_FILE}_billboards/{getFilenameOfLine(origScript[imageNum])}.png"
             if imageNum == CACHES[2][0]:
                 scribble = CACHES[2][1]
+                if use_as_background is True:
+                    scribble = scribble.resize((1920,1920),Image.Resampling.LANCZOS)
+                    frame.paste(scribble)
             elif os.path.isfile(FILENAME):
                 scribble = Image.open(FILENAME)
+                if use_as_background is True:
+                    scribble = scribble.resize((1920,1920),Image.Resampling.LANCZOS)
+                    frame.paste(scribble)
                 CACHES[2] = [imageNum,scribble]
 
             if scribble is not None:
@@ -67,7 +73,7 @@ def drawFrame(frameNum,paragraph,emotion,imageNum,pose,phoneNum,poseTimeSinceLas
         if FLIPPED:
             s_X += int(W_W/2)
 
-        if USE_BILLBOARDS and scribble is not None:
+        if USE_BILLBOARDS and scribble is not None and use_as_background is False:
             img1 = ImageDraw.Draw(frame)
             img1.rectangle([(s_X+W_M-4,W_M-4),(s_X+W_W/2-W_M+8,W_H-W_M+8)], fill ="#603810")
             img_centerX = s_X+W_M*2+SCRIBBLE_W*0.5
